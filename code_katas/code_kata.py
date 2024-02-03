@@ -1,4 +1,4 @@
-# bozza
+# BASTAAAAAA
 
 import hashlib
 
