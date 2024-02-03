@@ -1,4 +1,4 @@
-# Saraz
+# loffo
 
 import hashlib
 
