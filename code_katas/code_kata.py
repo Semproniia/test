@@ -1,22 +1,21 @@
-# SARA
-import subprocess
+# Esempio di script Python ben scritto
 
-def run_pylint_analysis(file_path):
+def calculate_square_area(side_length):
+    """Calcola l'area di un quadrato."""
+    if side_length <= 0:
+        raise ValueError("La lunghezza del lato deve essere positiva.")
+    return side_length ** 2
+
+def main():
+    """Funzione principale."""
     try:
-        result = subprocess.run(['pylint', file_path], capture_output=True, text=True)
-        pylint_output = result.stdout
-
-        # Check if there are any issues reported by Pylint
-        if "Your code has been rated at" not in pylint_output:
-            print(f'Pylint found issues: {pylint_output}')
-        else:
-            print(f'Pylint Output: {pylint_output}')
-
-    except subprocess.CalledProcessError as e:
-        print(f'Error running Pylint: {e.stderr}')
+        side_length = float(input("Inserisci la lunghezza del lato del quadrato: "))
+        area = calculate_square_area(side_length)
+        print(f"L'area del quadrato è: {area}")
+    except ValueError as e:
+        print(f"Errore: {e}")
+    except Exception as e:
+        print(f"Si è verificato un errore imprevisto: {e}")
 
 if _name_ == "_main_":
-    # Replace 'your_file.py' with the actual path to your Python file
-    file_path = 'path/to/your_file.py'
-    
-    run_pylint_analysis(file_path)
+    main()
