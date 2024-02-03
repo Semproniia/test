@@ -4,7 +4,7 @@ import logging
 
 def securehash(data):
     try:
-        # Using SHA-256 for secure hashing
+        # Using SHA-256 for secure hashingf
         hasheddata = hashlib.sha256(data.encode()).hexdigest()
         return hasheddata
     except Exception as e:
