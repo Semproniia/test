@@ -1,21 +1,31 @@
-# Esempio di script Python ben scritto 3
+import subprocess
+import string
 
-def calculate_square_area(side_length):
-    """Calcola l'area di un quadrato."""
-    if side_length <= 0:
-        raise ValueError("La lunghezza del lato deve essere positiva.")
-    return side_length ** 2
+def removenonprintablecharacters(inputstr):
+    # Keep only printable ASCII characters
+    printable_chars = set(string.printable)
+    return ''.join(char for char in input_str if char in printable_chars)
 
-def main():
-    """Funzione principale."""
+def run_pylint_analysis(file_path):
     try:
-        side_length = float(input("Inserisci la lunghezza del lato del quadrato: "))
-        area = calculate_square_area(side_length)
-        print(f"L'area del quadrato è: {area}")
-    except ValueError as e:
-        print(f"Errore: {e}")
-    except Exception as e:
-        print(f"Si è verificato un errore imprevisto: {e}")
+        # Read the file content
+        with open(file_path, 'r', encoding='utf-8') as file:
+            file_content = file.read()
 
-if _name_ == "_main_":
-    main()
+        # Sanitize the content by removing non-printable characters
+        sanitized_content = remove_non_printable_characters(file_content)
+
+        # Run Pylint on the sanitized content
+        result = subprocess.run(['pylint', '--disable=all', '--enable=errors', '-'], input=sanitized_content, capture_output=True, text=True)
+
+        # Print the Pylint output
+        print(result.stdout)
+
+    except Exception as e:
+        print(f"Error running Pylint: {e}")
+
+if __name == "__main":
+    # Replace 'path/to/your_file.py' with the actual path to your Python file
+    file_path = 'path/to/your_file.py'
+
+    run_pylint_analysis(file_path)
