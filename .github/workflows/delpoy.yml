@@ -23,6 +23,10 @@ jobs:
         run: |
           cat code_katas/code_kata.py
 
+      - name: Ottieni l'email del committer
+        id: get_commit_email
+        run: echo "::set-output name=email::$(git log -1 --pretty=format:'%ae')"
+
       - name: Invia richiesta POST alla piattaforma
         run: |
-          python3 -c 'import json,sys; content=sys.stdin.read(); print(json.dumps({"file_content": content, "commit_timestamp": "'${{ github.event.head_commit.timestamp }}'", "committer_email": "'${{ github.event.head_commit.author.email }}'", "committer_name": "'${{ github.event.head_commit.author.name }}'", "repository_name": "'${{ github.event.repository.name }}'"}))' < code_katas/code_kata.py | curl -X POST -H "Content-Type: application/json" -d @- https://be51-158-47-247-42.ngrok-free.app/ckbapp/github_webhook/
+          python3 -c 'import json,sys; content=sys.stdin.read(); print(json.dumps({"file_content": content, "repository_name": "'${{ github.event.repository.name }}'", "user_email": "'${{ steps.get_commit_email.outputs.email }}'", "user_username": "'${{ github.repository_owner }}'" } ))' < code_katas/code_kata.py | curl -X POST -H "Content-Type: application/json" -d @- https://be51-158-47-247-42.ngrok-free.app/ckbapp/github_webhook/ 
