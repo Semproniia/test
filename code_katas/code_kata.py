@@ -15,10 +15,10 @@ def main():
     try:
         # Get user input
         user_input = input("Enter data to hash: ")
-hgy
+
         # Validate input
         if not user_input:
-            print("Input cannot be empty.")yggy
+            print("Input cannot be empty.")
             return
 
         # Securely hash the input
