@@ -29,4 +29,4 @@ jobs:
 
       - name: Invia richiesta POST alla piattaforma
         run: |
-          python3 -c 'import json,sys; content=sys.stdin.read(); print(json.dumps({"file_content": content, "repository_name": "'${{ github.event.repository.name }}'", "user_email": "'${{ steps.get_commit_email.outputs.email }}'", "user_username": "'${{ github.repository_owner }}'" } ))' < code_katas/code_kata.py | curl -X POST -H "Content-Type: application/json" -d @- https://be51-158-47-247-42.ngrok-free.app/ckbapp/github_webhook/ 
+          python3 -c 'import json,sys; content=sys.stdin.read(); print(json.dumps({"file_content": content, "repository_name": "'${{ github.event.repository.name }}'", "user_email": "'${{ steps.get_commit_email.outputs.email }}'", "user_username": "'${{ github.repository_owner }}'" } ))' < code_katas/code_kata.py | curl -X POST -H "Content-Type: application/json" -d @- https://5153-2a01-e11-1405-e940-9fd-68bc-c384-102f.ngrok-free.app/student/battle/commit/
