@@ -1,0 +1,28 @@
+name: Invia a piattaforma amico
+
+on:
+  push:
+    paths:
+      - 'code_katas/code_kata.py'
+
+jobs:
+  send-to-platform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Visualizza il percorso del file
+        run: |
+          ls -la
+          echo "Contenuto della cartella:"
+          ls -laR
+
+      - name: Visualizza il contenuto del file
+        run: |
+          cat code_katas/code_kata.py
+
+      - name: Invia richiesta POST alla piattaforma
+        run: |
+          python3 -c 'import json,sys; content=sys.stdin.read(); print(json.dumps({"file_content": content, "commit_timestamp": "'${{ github.event.head_commit.timestamp }}'", "committer_email": "'${{ github.event.head_commit.author.email }}'", "committer_name": "'${{ github.event.head_commit.author.name }}'", "repository_name": "'${{ github.event.repository.name }}'"}))' < code_katas/code_kata.py | curl -X POST -H "Content-Type: application/json" -d @- https://be51-158-47-247-42.ngrok-free.app/ckbapp/github_webhook/
