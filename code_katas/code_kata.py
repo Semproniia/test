@@ -1,31 +1,36 @@
-import subprocess
-import string
+import hashlib
+import logging
 
-def removenonprintablecharacters(inputstr):
-    # Keep only printable ASCII characters
-    printable_chars = set(string.printable)
-    return ''.join(char for char in input_str if char in printable_chars)
-
-def run_pylint_analysis(file_path):
+def securehash(data):
     try:
-        # Read the file content
-        with open(file_path, 'r', encoding='utf-8') as file:
-            file_content = file.read()
+        # Using SHA-256 for secure hashing
+        hasheddata = hashlib.sha256(data.encode()).hexdigest()
+        return hasheddata
+    except Exception as e:
+        logging.error(f"Error in securehash: {e}")
+        return None
 
-        # Sanitize the content by removing non-printable characters
-        sanitized_content = remove_non_printable_characters(file_content)
+def main():
+    try:
+        # Get user input
+        user_input = input("Enter data to hash: ")
 
-        # Run Pylint on the sanitized content
-        result = subprocess.run(['pylint', '--disable=all', '--enable=errors', '-'], input=sanitized_content, capture_output=True, text=True)
+        # Validate input
+        if not user_input:
+            print("Input cannot be empty.")
+            return
 
-        # Print the Pylint output
-        print(result.stdout)
+        # Securely hash the input
+        hashed_result = secure_hash(user_input)
+
+        if hashed_result:
+            print(f"Secure Hash: {hashed_result}")
+        else:
+            print("Hashing failed. Please try again.")
 
     except Exception as e:
-        print(f"Error running Pylint: {e}")
+        logging.error(f"Unexpected error in main: {e}")
+        print("An unexpected error occurred. Please try again.")
 
 if __name == "__main":
-    # Replace 'path/to/your_file.py' with the actual path to your Python file
-    file_path = 'path/to/your_file.py'
-
-    run_pylint_analysis(file_path)
+    main()
