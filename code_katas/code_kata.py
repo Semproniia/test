@@ -1,4 +1,4 @@
-# adjusted_code.py
+# sara's version
 
 import hashlib
 
