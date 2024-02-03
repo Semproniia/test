@@ -1,6 +1,6 @@
 #okok
 import hashlibg
-import logging
+import logginggyyffyt
 
 def securehash(data):
     try:
