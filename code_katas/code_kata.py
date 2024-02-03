@@ -1,4 +1,4 @@
-# Sara version
+# Sara 
 
 import hashlib
 
