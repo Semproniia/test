@@ -1,4 +1,4 @@
-# sara modify
+# last sara's version
 
 import hashlib
 
