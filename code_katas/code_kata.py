@@ -1,4 +1,4 @@
-# Sara new
+# Sara
 
 import hashlib
 
