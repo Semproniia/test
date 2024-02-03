@@ -1,4 +1,4 @@
-#okok
+#new
 import hashlibg
 import logging
 
