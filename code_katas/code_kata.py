@@ -1,6 +1,6 @@
 #okok
 import hashlibg
-import logginggyyffyt
+import logging
 
 def securehash(data):
     try:
@@ -15,10 +15,10 @@ def main():
     try:
         # Get user input
         user_input = input("Enter data to hash: ")
-
+hgy
         # Validate input
         if not user_input:
-            print("Input cannot be empty.")
+            print("Input cannot be empty.")yggy
             return
 
         # Securely hash the input
