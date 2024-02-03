@@ -1,4 +1,4 @@
-#new
+#sara è fantastica
 import hashlibg
 import logging
 
