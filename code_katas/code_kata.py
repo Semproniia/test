@@ -1,4 +1,4 @@
-# Esempio di script Python ben scritto
+# Esempio di script Python ben scritto 2
 
 def calculate_square_area(side_length):
     """Calcola l'area di un quadrato."""
