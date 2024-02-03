@@ -1,4 +1,4 @@
-# last sara's versiooon
+# Attilio suca
 
 import hashlib
 
